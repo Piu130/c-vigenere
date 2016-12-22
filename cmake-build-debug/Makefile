@@ -150,6 +150,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/main.c.s
 .PHONY : main.c.s
 
+vigenere.o: vigenere.c.o
+
+.PHONY : vigenere.o
+
+# target to build an object file
+vigenere.c.o:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/vigenere.c.o
+.PHONY : vigenere.c.o
+
+vigenere.i: vigenere.c.i
+
+.PHONY : vigenere.i
+
+# target to preprocess a source file
+vigenere.c.i:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/vigenere.c.i
+.PHONY : vigenere.c.i
+
+vigenere.s: vigenere.c.s
+
+.PHONY : vigenere.s
+
+# target to generate assembly for a file
+vigenere.c.s:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/vigenere.c.s
+.PHONY : vigenere.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... vigenere.o"
+	@echo "... vigenere.i"
+	@echo "... vigenere.s"
 .PHONY : help
 
 
