@@ -7,15 +7,15 @@
 #IncludeRegexTransform: 
 
 /home/piu130/ClionProjects/c-vigenere/main.c
-stdio.h
--
-argp.h
+stdlib.h
 -
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 
 /home/piu130/ClionProjects/c-vigenere/vigenere.c
 stdio.h
+-
+stdlib.h
 -
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h

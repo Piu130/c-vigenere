@@ -1,20 +1,35 @@
-#include <stdio.h>
+#include <stdlib.h>
+#include "vigenere.h"
 
-// https://stackoverflow.com/questions/25410690/scanf-variable-length-specifier
-#define STR2(x) #x
-#define STR(X) STR2(X)
-#define MAX_PASS_LEN 12
+int main(int argc, char *argv[]) {
+  char mode;
+  char *file;
+  if(argv[1][0] == '-') {
+    mode = argv[1][1];
+    if(mode == 'h') {
+      hack(argv[2], argv[3]);
+      return 0;
+    }
+    file = argv[2];
+  } else {
+    mode = 'e';
+    file = argv[1];
+  }
 
-void askForPassPhrase(char* passPhrase) {
-    puts("What is your pass phrase?");
-    scanf("%" STR(MAX_PASS_LEN) "s", passPhrase);
-}
+  char passPhrase[MAX_PASS_LEN] =  "abc123def456";
+//  char passPhrase[MAX_PASS_LEN];
+//  askForPassPhrase(passPhrase);
 
-int main(int argc, char** argv) {
-    char passPhrase[MAX_PASS_LEN];
-    askForPassPhrase(passPhrase);
+  switch(mode) {
+    case 'e':
+      encrypt(passPhrase, file);
+      break;
+    case 'd':
+      decrypt(passPhrase, file);
+      break;
+    default:
+      exit(1);
+  }
 
-    printf("%s", passPhrase);
-
-    return 0;
+  exit(0);
 }
