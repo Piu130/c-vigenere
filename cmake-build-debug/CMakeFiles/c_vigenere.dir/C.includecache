@@ -9,6 +9,8 @@
 /home/piu130/ClionProjects/c-vigenere/main.c
 stdlib.h
 -
+memory.h
+-
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 
@@ -16,6 +18,8 @@ vigenere.h
 stdio.h
 -
 stdlib.h
+-
+memory.h
 -
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h

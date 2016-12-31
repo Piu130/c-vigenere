@@ -9,7 +9,7 @@
 
 #define MAX_PASS_LEN 13 //12 + terminater
 
-void askForPassPhrase(char *);
-void encrypt(char *, char *);
-void decrypt(char *, char *);
+int askForPassPhrase(char *);
+void encrypt(char *, int, char *);
+void decrypt(char *, int, char *);
 void hack(char *, char *);
