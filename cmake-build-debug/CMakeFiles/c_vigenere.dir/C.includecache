@@ -13,11 +13,21 @@ memory.h
 -
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
+stringHelper.h
+/home/piu130/ClionProjects/c-vigenere/stringHelper.h
+
+/home/piu130/ClionProjects/c-vigenere/stringHelper.c
+stddef.h
+-
+memory.h
+-
+stringHelper.h
+/home/piu130/ClionProjects/c-vigenere/stringHelper.h
+
+/home/piu130/ClionProjects/c-vigenere/stringHelper.h
 
 /home/piu130/ClionProjects/c-vigenere/vigenere.c
 stdio.h
--
-stdlib.h
 -
 memory.h
 -

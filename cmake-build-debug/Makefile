@@ -150,6 +150,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/main.c.s
 .PHONY : main.c.s
 
+stringHelper.o: stringHelper.c.o
+
+.PHONY : stringHelper.o
+
+# target to build an object file
+stringHelper.c.o:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/stringHelper.c.o
+.PHONY : stringHelper.c.o
+
+stringHelper.i: stringHelper.c.i
+
+.PHONY : stringHelper.i
+
+# target to preprocess a source file
+stringHelper.c.i:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/stringHelper.c.i
+.PHONY : stringHelper.c.i
+
+stringHelper.s: stringHelper.c.s
+
+.PHONY : stringHelper.s
+
+# target to generate assembly for a file
+stringHelper.c.s:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/stringHelper.c.s
+.PHONY : stringHelper.c.s
+
 vigenere.o: vigenere.c.o
 
 .PHONY : vigenere.o
@@ -189,6 +216,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... stringHelper.o"
+	@echo "... stringHelper.i"
+	@echo "... stringHelper.s"
 	@echo "... vigenere.o"
 	@echo "... vigenere.i"
 	@echo "... vigenere.s"
