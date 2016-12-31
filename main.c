@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "vigenere.h"
-#include "stringHelper.h"
 
 int main(int argc, char *argv[]) {
   char mode;
@@ -28,7 +27,6 @@ int main(int argc, char *argv[]) {
       encrypt(passPhrase, passPhraseLen, fileName);
       break;
     case 'd':
-      endsWith(fileName, ".encrypted") == 1 ? : exit(1);
       decrypt(passPhrase, passPhraseLen, fileName);
       break;
     default:

@@ -8,6 +8,7 @@ CMakeFiles/c_vigenere.dir/main.c.o: ../vigenere.h
 CMakeFiles/c_vigenere.dir/stringHelper.c.o: ../stringHelper.c
 CMakeFiles/c_vigenere.dir/stringHelper.c.o: ../stringHelper.h
 
+CMakeFiles/c_vigenere.dir/vigenere.c.o: ../stringHelper.h
 CMakeFiles/c_vigenere.dir/vigenere.c.o: ../vigenere.c
 CMakeFiles/c_vigenere.dir/vigenere.c.o: ../vigenere.h
 

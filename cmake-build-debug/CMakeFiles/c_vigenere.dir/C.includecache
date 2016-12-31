@@ -9,8 +9,6 @@
 /home/piu130/ClionProjects/c-vigenere/main.c
 stdlib.h
 -
-memory.h
--
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 stringHelper.h
@@ -31,8 +29,12 @@ stdio.h
 -
 memory.h
 -
+stdlib.h
+-
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
+stringHelper.h
+/home/piu130/ClionProjects/c-vigenere/stringHelper.h
 
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 

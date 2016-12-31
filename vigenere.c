@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <memory.h>
+#include <stdlib.h>
 #include "vigenere.h"
+#include "stringHelper.h"
 
 // https://stackoverflow.com/questions/25410690/scanf-variable-length-specifier
 #define STR2(x) #x
@@ -80,10 +81,16 @@ void encrypt(char *passPhrase, int passPhraseLen, char *decryptedFileName) {
  * @param fileName      The file name
  */
 void decrypt(char *passPhrase, int passPhraseLen, char *encryptedFileName) {
+  if(endsWith(encryptedFileName, ".encrypted") == 0) {
+    printf("Sorry I can only handle .encrypted files.");
+    exit(1);
+  }
   encDec(passPhrase, passPhraseLen, encryptedFileName, 'd');
 }
 
-void hack(char *encryptedFile, char *decryptedFile) {
-  printf("%s", encryptedFile);
-  printf("%s", decryptedFile);
+void hack(char *encryptedFileName, char *decryptedFileName) {
+  if(endsWith(encryptedFileName, ".encrypted") == 0) {
+    printf("Sorry I can only handle .encrypted files.");
+    exit(1);
+  }
 }
