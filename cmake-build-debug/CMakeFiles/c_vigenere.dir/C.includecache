@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/piu130/ClionProjects/c-vigenere/fileHelper.c
+stdio.h
+-
+fileHelper.h
+/home/piu130/ClionProjects/c-vigenere/fileHelper.h
+
+/home/piu130/ClionProjects/c-vigenere/fileHelper.h
+stdio.h
+-
+
 /home/piu130/ClionProjects/c-vigenere/main.c
 stdlib.h
 -
@@ -29,10 +39,14 @@ memory.h
 -
 stdlib.h
 -
+unistd.h
+-
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 stringHelper.h
 /home/piu130/ClionProjects/c-vigenere/stringHelper.h
+fileHelper.h
+/home/piu130/ClionProjects/c-vigenere/fileHelper.h
 
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 

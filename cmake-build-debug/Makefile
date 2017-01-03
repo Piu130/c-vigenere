@@ -123,6 +123,33 @@ c_vigenere/fast:
 	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/build
 .PHONY : c_vigenere/fast
 
+fileHelper.o: fileHelper.c.o
+
+.PHONY : fileHelper.o
+
+# target to build an object file
+fileHelper.c.o:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/fileHelper.c.o
+.PHONY : fileHelper.c.o
+
+fileHelper.i: fileHelper.c.i
+
+.PHONY : fileHelper.i
+
+# target to preprocess a source file
+fileHelper.c.i:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/fileHelper.c.i
+.PHONY : fileHelper.c.i
+
+fileHelper.s: fileHelper.c.s
+
+.PHONY : fileHelper.s
+
+# target to generate assembly for a file
+fileHelper.c.s:
+	$(MAKE) -f CMakeFiles/c_vigenere.dir/build.make CMakeFiles/c_vigenere.dir/fileHelper.c.s
+.PHONY : fileHelper.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... c_vigenere"
+	@echo "... fileHelper.o"
+	@echo "... fileHelper.i"
+	@echo "... fileHelper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

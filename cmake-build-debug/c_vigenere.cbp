@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/piu130/ClionProjects/c-vigenere/fileHelper.c">
+			<Option target="c_vigenere"/>
+		</Unit>
+		<Unit filename="/home/piu130/ClionProjects/c-vigenere/fileHelper.h">
+			<Option target="c_vigenere"/>
+		</Unit>
 		<Unit filename="/home/piu130/ClionProjects/c-vigenere/main.c">
 			<Option target="c_vigenere"/>
 		</Unit>
