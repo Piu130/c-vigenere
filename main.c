@@ -17,11 +17,9 @@ int main(int argc, char *argv[]) {
     fileName = argv[1];
   }
 
-  char passPhrase[MAX_PASS_LEN] =  "abc123def456";
-  int passPhraseLen = 12;
-//  char passPhrase[MAX_PASS_LEN];
-//  int passPhraseLen = askForPassPhrase(passPhrase);
-  int a;
+  char passPhrase[MAX_PASS_LEN];
+  size_t passPhraseLen = askForPassPhrase(passPhrase);
+
   switch(mode) {
     case 'e':
       encrypt(passPhrase, passPhraseLen, fileName);
