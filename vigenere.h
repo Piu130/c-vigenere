@@ -7,7 +7,7 @@
 
 #endif //C_VIGENERE_VIGENERE_H
 
-#define MAX_PASS_LEN 13 //12 + terminater
+#define MAX_PASS_LEN 13 // 12 + terminater
 
 int askForPassPhrase(char *);
 void encrypt(char *, int, char *);
