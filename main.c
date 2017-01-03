@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     fileName = argv[1];
   }
 
-  char passPhrase[MAX_PASS_LEN];
+  char passPhrase[MAX_PASS_LEN] = "";
   size_t passPhraseLen = askForPassPhrase(passPhrase);
 
   switch(mode) {
