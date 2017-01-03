@@ -30,7 +30,12 @@ void encDec(char *passPhrase, int passPhraseLen, char *fileName, char mode) {
 
   char fileNameWrite[50] = "";
   strcat(fileNameWrite, fileName);
-  mode == 'e' ? strcat(fileNameWrite, ".encrypted") : strcat(fileNameWrite, ".decrypted");
+
+  if(mode == 'e') {
+    strcat(fileNameWrite, ".encrypted");
+  } else {
+    fileNameWrite[strlen(fileName)-10] = '\0';
+  }
 
   FILE* fileNameWriteP = fopen(fileNameWrite, "w");
 
@@ -93,4 +98,6 @@ void hack(char *encryptedFileName, char *decryptedFileName) {
     printf("Sorry I can only handle .encrypted files.");
     exit(1);
   }
+
+
 }

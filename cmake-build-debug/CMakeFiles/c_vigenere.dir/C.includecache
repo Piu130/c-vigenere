@@ -11,8 +11,6 @@ stdlib.h
 -
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
-stringHelper.h
-/home/piu130/ClionProjects/c-vigenere/stringHelper.h
 
 /home/piu130/ClionProjects/c-vigenere/stringHelper.c
 stddef.h
