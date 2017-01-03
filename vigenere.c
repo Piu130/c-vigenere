@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <memory.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "vigenere.h"
 #include "stringHelper.h"
+#include "fileHelper.h"
 
 // https://stackoverflow.com/questions/25410690/scanf-variable-length-specifier
 #define STR2(x) #x
@@ -96,12 +98,19 @@ void decrypt(char *passPhrase, size_t passPhraseLen, char *encryptedFileName) {
 
 void hack(char *decryptedFileName, char *encryptedFileName) {
   if(endsWith(encryptedFileName, ".encrypted") == 0) {
-    printf("Sorry I need a .encrypted file.");
+    puts("Sorry I need a .encrypted file.");
     exit(1);
   }
 
-  FILE* encryptedFileNameReadP = fopen(encryptedFileName, "r");
-  FILE* decryptedFileNameReadP = fopen(decryptedFileName, "r");
+  FILE *encryptedFileNameReadP = fopen(encryptedFileName, "r");
+  FILE *decryptedFileNameReadP = fopen(decryptedFileName, "r");
+
+  long encryptedFileSize = fsize(encryptedFileNameReadP);
+  long decryptedFileSize = fsize(decryptedFileNameReadP);
+  if(encryptedFileSize != decryptedFileSize) {
+    printf("File size mismatch: %ld, %ld", decryptedFileSize, encryptedFileSize);
+    exit(1);
+  }
 
   int currentEncChar; // note: int, not char, required to handle EOF
   int currentDecChar;
