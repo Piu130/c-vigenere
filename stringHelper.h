@@ -1,7 +1,3 @@
-//
-// Created by piu130 on 31.12.16.
-//
-
 #ifndef C_VIGENERE_STRINGHELPER_H
 #define C_VIGENERE_STRINGHELPER_H
 
