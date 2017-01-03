@@ -39,8 +39,6 @@ memory.h
 -
 stdlib.h
 -
-unistd.h
--
 vigenere.h
 /home/piu130/ClionProjects/c-vigenere/vigenere.h
 stringHelper.h
