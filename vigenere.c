@@ -100,4 +100,29 @@ void hack(char *decryptedFileName, char *encryptedFileName) {
     exit(1);
   }
 
+  FILE* encryptedFileNameReadP = fopen(encryptedFileName, "r");
+  FILE* decryptedFileNameReadP = fopen(decryptedFileName, "r");
+
+  int currentEncChar; // note: int, not char, required to handle EOF
+  int currentDecChar;
+  int currentPassPhraseChar;
+  int i;
+  char passPhrase[MAX_PASS_LEN - 1];
+  for(i = 0; i < MAX_PASS_LEN - 1; i++) {
+    currentEncChar = fgetc(encryptedFileNameReadP);
+    currentDecChar = fgetc(decryptedFileNameReadP);
+
+    currentPassPhraseChar = (currentEncChar - currentDecChar)%256;
+    currentPassPhraseChar < 0 ? currentPassPhraseChar += 256 : currentPassPhraseChar;
+
+    passPhrase[i] = (char)currentPassPhraseChar;
+  }
+
+  if (ferror(encryptedFileNameReadP) || ferror(decryptedFileNameReadP))
+    puts("I/O error when reading");
+  else if (feof(encryptedFileNameReadP) && feof(decryptedFileNameReadP))
+    puts("End of files reached successfully");
+
+  fclose(encryptedFileNameReadP);
+  fclose(decryptedFileNameReadP);
 }
