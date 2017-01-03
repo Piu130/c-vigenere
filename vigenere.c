@@ -13,9 +13,10 @@
  * @param passPhrase The pointer to store the pass phrase
  * @return The length of input
  */
-int askForPassPhrase(char *passPhrase) {
+size_t askForPassPhrase(char *passPhrase) {
   printf("What is your pass phrase? (maxlen=%d)", MAX_PASS_LEN - 1);
-  return scanf("%" STR(MAX_PASS_LEN) "s", passPhrase);
+  scanf("%" STR(MAX_PASS_LEN) "s", passPhrase);
+  return strlen(passPhrase);
 }
 
 /**
@@ -25,7 +26,7 @@ int askForPassPhrase(char *passPhrase) {
  * @param fileName      The file name
  * @param mode          'e' to encrypt, 'd' to decrypt
  */
-void encDec(char *passPhrase, int passPhraseLen, char *fileName, char mode) {
+void encDec(char *passPhrase, size_t passPhraseLen, char *fileName, char mode) {
   FILE* fileNameReadP = fopen(fileName, "r");
 
   char fileNameWrite[50] = "";
@@ -34,7 +35,7 @@ void encDec(char *passPhrase, int passPhraseLen, char *fileName, char mode) {
   if(mode == 'e') {
     strcat(fileNameWrite, ".encrypted");
   } else {
-    fileNameWrite[strlen(fileName)-10] = '\0';
+    fileNameWrite[strlen(fileName) - 10] = '\0';
   }
 
   FILE* fileNameWriteP = fopen(fileNameWrite, "w");
@@ -42,7 +43,7 @@ void encDec(char *passPhrase, int passPhraseLen, char *fileName, char mode) {
   int currentChar; // note: int, not char, required to handle EOF
   int currentPassChar;
   int counter = 0;
-  while ((currentChar = fgetc(fileNameReadP)) != EOF) { // standard C I/O file reading loop
+  while ((currentChar = fgetc(fileNameReadP)) != EOF) {
     currentPassChar = passPhrase[counter%passPhraseLen];
 
     if(mode == 'e') {
@@ -75,7 +76,7 @@ void encDec(char *passPhrase, int passPhraseLen, char *fileName, char mode) {
  * @param passPhraseLen The pass phrase length
  * @param fileName      The file name
  */
-void encrypt(char *passPhrase, int passPhraseLen, char *decryptedFileName) {
+void encrypt(char *passPhrase, size_t passPhraseLen, char *decryptedFileName) {
   encDec(passPhrase, passPhraseLen, decryptedFileName, 'e');
 }
 
@@ -85,7 +86,7 @@ void encrypt(char *passPhrase, int passPhraseLen, char *decryptedFileName) {
  * @param passPhraseLen The pass phrase length
  * @param fileName      The file name
  */
-void decrypt(char *passPhrase, int passPhraseLen, char *encryptedFileName) {
+void decrypt(char *passPhrase, size_t passPhraseLen, char *encryptedFileName) {
   if(endsWith(encryptedFileName, ".encrypted") == 0) {
     printf("Sorry I can only handle .encrypted files.");
     exit(1);
@@ -93,11 +94,10 @@ void decrypt(char *passPhrase, int passPhraseLen, char *encryptedFileName) {
   encDec(passPhrase, passPhraseLen, encryptedFileName, 'd');
 }
 
-void hack(char *encryptedFileName, char *decryptedFileName) {
+void hack(char *decryptedFileName, char *encryptedFileName) {
   if(endsWith(encryptedFileName, ".encrypted") == 0) {
-    printf("Sorry I can only handle .encrypted files.");
+    printf("Sorry I need a .encrypted file.");
     exit(1);
   }
-
 
 }
