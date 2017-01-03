@@ -8,8 +8,7 @@
  * @param suffix Suffix to search
  * @return 1 if true else 0
  */
-int endsWith(const char *str, const char *suffix)
-{
+int endsWith(const char *str, const char *suffix) {
   if (!str || !suffix)
     return 0;
   size_t lenstr = strlen(str);
