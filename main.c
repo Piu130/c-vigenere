@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "vigenere.h"
 
 int main(int argc, char *argv[]) {
@@ -28,6 +29,7 @@ int main(int argc, char *argv[]) {
       decrypt(passPhrase, passPhraseLen, fileName);
       break;
     default:
+      fprintf(stderr, "Unknown parameter: %c\n", mode);
       exit(1);
   }
 
