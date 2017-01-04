@@ -12,19 +12,25 @@ Build the `vigenere` executable with `make`.
 
 ### Encrypt
 
-`vigenere [-e] FILENAME`
+```
+vigenere [-e] FILENAME
+```
 
 Program asks for pass phrase and encrypts the file as `FILENAME.encrypted`
 
 ### Decrypt
 
-`vigenere -d FILENAME.encrypted`
+```
+vigenere -d FILENAME.encrypted
+```
 
 Program asks for pass phrase and decrypts the file as `FILENAME`
 
 ### Hack
 
-`vigenere -h[ack] FILENAME FILENAME.encrypted`
+```
+vigenere -h[ack] FILENAME FILENAME.encrypted
+```
 
 Program prints the used pass phrase.
 
