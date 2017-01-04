@@ -96,7 +96,10 @@ void decrypt(char *passPhrase, size_t passPhraseLen, char *encryptedFileName) {
   encDec(passPhrase, passPhraseLen, encryptedFileName, 'd');
 }
 
-// TODO not working correct at the moment
+/**
+ * Prints the found repetition to the console. Works only if the first letter is not used twice.
+ * @param string String to check repetition
+ */
 void checkRepetitionInString(char *string) {
   char passPhrase[MAX_PASS_LEN + 1] = "";
 
