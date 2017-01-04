@@ -63,7 +63,7 @@ void encDec(char *passPhrase, size_t passPhraseLen, char *fileName, char mode) {
   if (ferror(fileNameReadP))
     fprintf(stderr, "I/O error when reading\n");
   else if (feof(fileNameReadP))
-    puts("End of file reached successfully");
+    puts("End of file reached successfully\n");
   if (ferror(fileNameWriteP))
     fprintf(stderr, "I/O error when writing\n");
 
@@ -142,7 +142,7 @@ void hack(char *decryptedFileName, char *encryptedFileName) {
   int currentDecChar;
   int currentPassPhraseChar;
   int i;
-  char passPhrase[encryptedFileSize];
+  char passPhraseRepeated[encryptedFileSize];
   for (i = 0; i < encryptedFileSize; i++) {
     currentEncChar = fgetc(encryptedFileNameReadP);
     currentDecChar = fgetc(decryptedFileNameReadP);
@@ -150,7 +150,7 @@ void hack(char *decryptedFileName, char *encryptedFileName) {
     currentPassPhraseChar = (currentEncChar - currentDecChar) % 256;
     currentPassPhraseChar < 0 ? currentPassPhraseChar += 256 : currentPassPhraseChar;
 
-    passPhrase[i] = (char) currentPassPhraseChar;
+    passPhraseRepeated[i] = (char) currentPassPhraseChar;
   }
 
   if (ferror(encryptedFileNameReadP) || ferror(decryptedFileNameReadP))
@@ -161,6 +161,5 @@ void hack(char *decryptedFileName, char *encryptedFileName) {
   fclose(encryptedFileNameReadP);
   fclose(decryptedFileNameReadP);
 
-  printf("The pass phrase used was: %s\n", passPhrase);
-  checkRepetitionInString(passPhrase);
+  checkRepetitionInString(passPhraseRepeated);
 }
