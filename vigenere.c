@@ -24,16 +24,19 @@ void askForPassPhrase(char *passPhrase) {
  * @param fileName      The file name
  * @param mode          'e' to encrypt, 'd' to decrypt
  */
-void encDec(const char *passPhrase, const char *fileName, char mode) {
+void encDec(const char *passPhrase, const char *fileName, enum mode mode) {
   FILE *fileNameReadP = fopen(fileName, "r");
 
   char fileNameWrite[50] = "";
   strcat(fileNameWrite, fileName);
 
-  if (mode == 'e') {
-    strcat(fileNameWrite, ".encrypted\0");
-  } else {
-    fileNameWrite[strlen(fileName) - 10] = '\0';
+  switch (mode) {
+    case ENCRYPT:
+      strcat(fileNameWrite, ".encrypted\0");
+      break;
+    case DECRYPT:
+      fileNameWrite[strlen(fileName) - 10] = '\0';
+      break;
   }
 
   FILE *fileNameWriteP = fopen(fileNameWrite, "w");
@@ -43,19 +46,13 @@ void encDec(const char *passPhrase, const char *fileName, char mode) {
   int counter = 0;
   size_t passPhraseLen = strlen(passPhrase);
   while ((currentChar = fgetc(fileNameReadP)) != EOF) {
-    currentPassChar = passPhrase[counter % passPhraseLen];
+    // loop array with % array length
+    currentPassChar = passPhrase[counter++ % passPhraseLen];
 
-    if (mode == 'e') {
-      currentChar += currentPassChar;
-    } else {
-      currentChar -= currentPassChar;
-    }
-
-    currentChar %= 256;
-    currentChar < 0 ? currentChar += 256 : currentChar;
+    // add pass char for encrypt, sub pass char for decrypt. Then % 256
+    currentChar = (currentChar + ((mode==ENCRYPT) ? currentPassChar : -currentPassChar) + 256)%256;
 
     fputc(currentChar, fileNameWriteP);
-    counter++;
   }
 
   if (ferror(fileNameReadP))
@@ -75,7 +72,7 @@ void encDec(const char *passPhrase, const char *fileName, char mode) {
  * @param fileName      The file name
  */
 void encrypt(const char *passPhrase, const char *decryptedFileName) {
-  encDec(passPhrase, decryptedFileName, 'e');
+  encDec(passPhrase, decryptedFileName, ENCRYPT);
 }
 
 /**
@@ -89,7 +86,7 @@ void decrypt(const char *passPhrase, const char *encryptedFileName) {
     exit(1);
   }
 
-  encDec(passPhrase, encryptedFileName, 'd');
+  encDec(passPhrase, encryptedFileName, DECRYPT);
 }
 
 /**
