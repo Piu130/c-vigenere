@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <memory.h>
 #include <stdlib.h>
+#include <error.h>
 #include "vigenere.h"
 #include "stringHelper.h"
 #include "fileHelper.h"
@@ -22,7 +23,7 @@ void askForPassPhrase(char *passPhrase) {
  * Encrypts or decrypts a file with vigenère
  * @param passPhrase    The pass phrase to encrypt/decrypt a file
  * @param fileName      The file name
- * @param mode          'e' to encrypt, 'd' to decrypt
+ * @param mode          enum mode ENCRYPT to encrypt, enum mode DECRYPT to decrypt
  */
 void encDec(const char *passPhrase, const char *fileName, enum mode mode) {
   FILE *fileNameReadP = fopen(fileName, "r");
@@ -34,6 +35,7 @@ void encDec(const char *passPhrase, const char *fileName, enum mode mode) {
     case ENCRYPT:
       strcat(fileNameWrite, ".encrypted\0");
       break;
+    default:
     case DECRYPT:
       fileNameWrite[strlen(fileName) - 10] = '\0';
       break;
@@ -56,11 +58,11 @@ void encDec(const char *passPhrase, const char *fileName, enum mode mode) {
   }
 
   if (ferror(fileNameReadP))
-    fprintf(stderr, "I/O error when reading\n");
+    error(1, 5, "I/O error when reading");
   else if (feof(fileNameReadP))
     puts("End of file reached successfully\n");
   if (ferror(fileNameWriteP))
-    fprintf(stderr, "I/O error when writing\n");
+    error(1, 5, "I/O error when writing");
 
   fclose(fileNameReadP);
   fclose(fileNameWriteP);
@@ -82,8 +84,7 @@ void encrypt(const char *passPhrase, const char *decryptedFileName) {
  */
 void decrypt(const char *passPhrase, const char *encryptedFileName) {
   if (endsWith(encryptedFileName, ".encrypted") == 0) {
-    fprintf(stderr, "Sorry I can only handle .encrypted files\n");
-    exit(1);
+    error(1, 5, "Sorry I can only handle .encrypted files");
   }
 
   encDec(passPhrase, encryptedFileName, DECRYPT);
@@ -116,8 +117,7 @@ void checkRepetitionInString(char *string) {
  */
 void hack(const char *decryptedFileName, const char *encryptedFileName) {
   if (endsWith(encryptedFileName, ".encrypted") == 0) {
-    fprintf(stderr, "Sorry I need a .encrypted file\n");
-    exit(1);
+    error(1, 5, "Sorry I need a .encrypted files");
   }
 
   FILE *encryptedFileNameReadP = fopen(encryptedFileName, "r");
@@ -126,8 +126,7 @@ void hack(const char *decryptedFileName, const char *encryptedFileName) {
   long encryptedFileSize = fsize(encryptedFileNameReadP);
   long decryptedFileSize = fsize(decryptedFileNameReadP);
   if (encryptedFileSize != decryptedFileSize) {
-    fprintf(stderr, "File size mismatch: %ld, %ld\n", decryptedFileSize, encryptedFileSize);
-    exit(1);
+    error(1, 22, "File size mismatch: %ld, %ld", decryptedFileSize, encryptedFileSize);
   }
 
   int currentEncChar; // note: int, not char, required to handle EOF
@@ -146,9 +145,9 @@ void hack(const char *decryptedFileName, const char *encryptedFileName) {
   }
 
   if (ferror(encryptedFileNameReadP) || ferror(decryptedFileNameReadP))
-    fprintf(stderr, "I/O error when reading\n");
+    error(1, 5, "I/O error when reading");
   else if (feof(encryptedFileNameReadP) && feof(decryptedFileNameReadP))
-    fprintf(stderr, "End of files reached successfully\n");
+    puts("End of files reached successfully\n");
 
   fclose(encryptedFileNameReadP);
   fclose(decryptedFileNameReadP);
