@@ -1,36 +1,54 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <error.h>
+#include <memory.h>
 #include "vigenere.h"
 
 int main(int argc, char *argv[]) {
-  char mode;
+  enum mode mode;
+  char firstArg[20];
   char *fileName;
 
-  if(argv[1][0] == '-') {
-    mode = argv[1][1];
-    if(mode == 'h') {
-      hack(argv[2], argv[3]);
-      return 0;
+  if(argc < 2 || argc > 4) {
+    error(1, 22, "%d params counted", argc); // 22: invalid argument
+  }
+
+  if (sscanf(argv[1], "-%s", firstArg)) {
+    if(argc < 3) {
+      error(1, 22, "No file name(s) passed"); // 22: invalid argument
+    }
+
+    if(strcmp(firstArg, "hack") == 0) {
+      mode = HACK;
+    } else if(strcmp(firstArg, "e") == 0) {
+      mode = ENCRYPT;
+    } else if(strcmp(firstArg, "d") == 0) {
+      mode = DECRYPT;
+    } else {
+      error(1, 22, "%s", firstArg); // 22: invalid argument
     }
     fileName = argv[2];
   } else {
-    mode = 'e';
+    mode = ENCRYPT;
     fileName = argv[1];
   }
 
   char passPhrase[MAX_PASS_LEN] = "";
-  askForPassPhrase(passPhrase);
-
-  switch(mode) {
-    case 'e':
+  switch (mode) {
+    case ENCRYPT:
+      askForPassPhrase(passPhrase);
       encrypt(passPhrase, fileName);
       break;
-    case 'd':
+    case DECRYPT:
+      askForPassPhrase(passPhrase);
       decrypt(passPhrase, fileName);
       break;
-    default:
-      fprintf(stderr, "Unknown parameter: %c\n", mode);
-      exit(1);
+    case HACK:
+      if(argc < 4) {
+        error(1, 22, "No file name(s) passed"); // 22: invalid argument
+      }
+      hack(fileName, argv[3]);
+      break;
   }
 
   exit(0);
