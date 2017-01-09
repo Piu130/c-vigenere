@@ -98,6 +98,7 @@ void checkRepetitionInString(char *string) {
   size_t len = strlen(string);
   int i = 0;
   int x = 1;
+  //TODO
   while (i + x < len) {
     if (string[i] == string[i + x]) {
       i += x;
