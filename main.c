@@ -19,14 +19,14 @@ int main(int argc, char *argv[]) {
   }
 
   char passPhrase[MAX_PASS_LEN] = "";
-  size_t passPhraseLen = askForPassPhrase(passPhrase);
+  askForPassPhrase(passPhrase);
 
   switch(mode) {
     case 'e':
-      encrypt(passPhrase, passPhraseLen, fileName);
+      encrypt(passPhrase, fileName);
       break;
     case 'd':
-      decrypt(passPhrase, passPhraseLen, fileName);
+      decrypt(passPhrase, fileName);
       break;
     default:
       fprintf(stderr, "Unknown parameter: %c\n", mode);

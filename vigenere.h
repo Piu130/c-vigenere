@@ -3,9 +3,9 @@
 
   #define MAX_PASS_LEN 20
 
-  size_t askForPassPhrase(char *);
-  void encrypt(char *, size_t, char *);
-  void decrypt(char *, size_t, char *);
+  void askForPassPhrase(char *);
+  void encrypt(char *, char *);
+  void decrypt(char *, char *);
   void hack(char *, char *);
 
 #endif //C_VIGENERE_VIGENERE_H

@@ -14,20 +14,18 @@
  * @param passPhrase The pointer to store the pass phrase
  * @return The length of input
  */
-size_t askForPassPhrase(char *passPhrase) {
+void askForPassPhrase(char *passPhrase) {
   printf("What is your pass phrase? (maxlen=%d)", MAX_PASS_LEN);
   scanf("%" STR(MAX_PASS_LEN) "s", passPhrase);
-  return strlen(passPhrase);
 }
 
 /**
  * Encrypts or decrypts a file with vigenère
  * @param passPhrase    The pass phrase to encrypt/decrypt a file
- * @param passPhraseLen The pass phrase length
  * @param fileName      The file name
  * @param mode          'e' to encrypt, 'd' to decrypt
  */
-void encDec(char *passPhrase, size_t passPhraseLen, char *fileName, char mode) {
+void encDec(char *passPhrase, char *fileName, char mode) {
   FILE *fileNameReadP = fopen(fileName, "r");
 
   char fileNameWrite[50] = "";
@@ -44,6 +42,7 @@ void encDec(char *passPhrase, size_t passPhraseLen, char *fileName, char mode) {
   int currentChar; // note: int, not char, required to handle EOF
   int currentPassChar;
   int counter = 0;
+  size_t passPhraseLen = strlen(passPhrase);
   while ((currentChar = fgetc(fileNameReadP)) != EOF) {
     currentPassChar = passPhrase[counter % passPhraseLen];
 
@@ -74,26 +73,24 @@ void encDec(char *passPhrase, size_t passPhraseLen, char *fileName, char mode) {
 /**
  * Encrypts a file with vigenère
  * @param passPhrase    The pass phrase to encrypt a file
- * @param passPhraseLen The pass phrase length
  * @param fileName      The file name
  */
-void encrypt(char *passPhrase, size_t passPhraseLen, char *decryptedFileName) {
-  encDec(passPhrase, passPhraseLen, decryptedFileName, 'e');
+void encrypt(char *passPhrase, char *decryptedFileName) {
+  encDec(passPhrase, decryptedFileName, 'e');
 }
 
 /**
  * Decrypts a file with vigenère
  * @param passPhrase    The pass phrase to decrypt a file
- * @param passPhraseLen The pass phrase length
  * @param fileName      The file name
  */
-void decrypt(char *passPhrase, size_t passPhraseLen, char *encryptedFileName) {
+void decrypt(char *passPhrase, char *encryptedFileName) {
   if (endsWith(encryptedFileName, ".encrypted") == 0) {
     fprintf(stderr, "Sorry I can only handle .encrypted files\n");
     exit(1);
   }
 
-  encDec(passPhrase, passPhraseLen, encryptedFileName, 'd');
+  encDec(passPhrase, encryptedFileName, 'd');
 }
 
 /**
@@ -108,6 +105,7 @@ void checkRepetitionInString(char *string) {
   for (i = 0; i < MAX_PASS_LEN; i++) {
     currentLetter = string[i];
     passPhrase[i] = currentLetter;
+    // TODO
     if (strstr(string, passPhrase) == NULL || (currentLetter == passPhrase[0] && i != 0)) {
       passPhrase[i] = '\0';
       break;
