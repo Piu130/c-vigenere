@@ -52,7 +52,7 @@ void encDec(const char *passPhrase, const char *fileName, enum mode mode) {
     currentPassChar = passPhrase[counter++ % passPhraseLen];
 
     // add pass char for encrypt, sub pass char for decrypt. Then % 256
-    currentChar = (currentChar + ((mode==ENCRYPT) ? currentPassChar : -currentPassChar) + 256)%256;
+    currentChar = (currentChar + ((mode == ENCRYPT) ? currentPassChar : -currentPassChar) + 256) % 256;
 
     fputc(currentChar, fileNameWriteP);
   }
@@ -98,8 +98,8 @@ void checkRepetitionInString(char *string) {
   size_t len = strlen(string);
   int i = 0;
   int x = 1;
-  while(i + x < len) {
-    if(string[i] == string[i+x]) {
+  while (i + x < len) {
+    if (string[i] == string[i + x]) {
       i += x;
     } else {
       x++;
