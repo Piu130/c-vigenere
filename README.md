@@ -36,4 +36,4 @@ Program prints the used pass phrase.
 
 ## Extend pass phrase limit
 
-Pass phrase limit is set to 20. You can easily change it in `vigener.h` by changing `MAX_PASS_LEN`.
+Pass phrase limit is set to 255. You can easily change it in `vigener.h` by changing `MAX_PASS_LEN`.
