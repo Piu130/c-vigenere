@@ -91,15 +91,15 @@ void decrypt(const char *passPhrase, const char *encryptedFileName) {
 }
 
 /**
- * Prints the found repetition to the console. Works only if the first letter is not used twice.
+ * Prints the found repetition to the console.
  * @param string String to check repetition
  */
 void checkRepetitionInString(char *string) {
   size_t len = strlen(string);
   int i = 0;
   int x = 1;
-  //TODO
-  while (i + x < len) {
+  //TODO Image ends with complicated chars
+  while (i + x < len - 3) {
     if (string[i] == string[i + x]) {
       i += x;
     } else {
