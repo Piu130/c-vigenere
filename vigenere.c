@@ -130,19 +130,11 @@ void hack(const char *decryptedFileName, const char *encryptedFileName) {
     error(1, 22, "File size mismatch: %ld, %ld", decryptedFileSize, encryptedFileSize);
   }
 
-  int currentEncChar; // note: int, not char, required to handle EOF
-  int currentDecChar;
-  int currentPassPhraseChar;
+  // Get pass phrase repeated
   int i;
   char passPhraseRepeated[encryptedFileSize];
   for (i = 0; i < encryptedFileSize; i++) {
-    currentEncChar = fgetc(encryptedFileNameReadP);
-    currentDecChar = fgetc(decryptedFileNameReadP);
-
-    currentPassPhraseChar = (currentEncChar - currentDecChar) % 256;
-    currentPassPhraseChar < 0 ? currentPassPhraseChar += 256 : currentPassPhraseChar;
-
-    passPhraseRepeated[i] = (char) currentPassPhraseChar;
+    passPhraseRepeated[i] = (char) (((fgetc(encryptedFileNameReadP) - fgetc(decryptedFileNameReadP)) + 256) % 256);
   }
 
   if (ferror(encryptedFileNameReadP) || ferror(decryptedFileNameReadP))
