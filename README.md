@@ -29,7 +29,7 @@ Program asks for pass phrase and decrypts the file as `FILENAME`
 ### Hack
 
 ```shell
-$ vigenere -h[ack] FILENAME FILENAME.encrypted
+$ vigenere -hack FILENAME FILENAME.encrypted
 ```
 
 Program prints the used pass phrase.
