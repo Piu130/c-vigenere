@@ -99,7 +99,7 @@ void checkRepetitionInString(char *string) {
   int i = 0;
   int x = 1;
   //TODO Image ends with complicated chars
-  while (i + x < len - 3) {
+  while (i + x < len) {
     if (string[i] == string[i + x]) {
       i += x;
     } else {
@@ -131,11 +131,12 @@ void hack(const char *decryptedFileName, const char *encryptedFileName) {
   }
 
   // Get pass phrase repeated
-  int i;
+  long i;
   char passPhraseRepeated[encryptedFileSize];
   for (i = 0; i < encryptedFileSize; i++) {
     passPhraseRepeated[i] = (char) (((fgetc(encryptedFileNameReadP) - fgetc(decryptedFileNameReadP)) + 256) % 256);
   }
+  passPhraseRepeated[i] = '\0'; // cut \n
 
   if (ferror(encryptedFileNameReadP) || ferror(decryptedFileNameReadP))
     error(1, 5, "I/O error when reading");
