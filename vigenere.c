@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <memory.h>
-#include <stdlib.h>
 #include <error.h>
 #include "vigenere.h"
 #include "stringHelper.h"
@@ -91,14 +90,13 @@ void decrypt(const char *passPhrase, const char *encryptedFileName) {
 }
 
 /**
- * Prints the found repetition to the console.
+ * Cuts the string at its first repetition
  * @param string String to check repetition
  */
 void checkRepetitionInString(char *string) {
   size_t len = strlen(string);
   int i = 0;
   int x = 1;
-  //TODO Image ends with complicated chars
   while (i + x < len) {
     if (string[i] == string[i + x]) {
       i += x;
@@ -107,8 +105,6 @@ void checkRepetitionInString(char *string) {
     }
   }
   string[x] = '\0';
-
-  printf("The pass phrase used was: %s\n", string);
 }
 
 /**
@@ -147,4 +143,6 @@ void hack(const char *decryptedFileName, const char *encryptedFileName) {
   fclose(decryptedFileNameReadP);
 
   checkRepetitionInString(passPhraseRepeated);
+
+  printf("The pass phrase used was: %s\n", passPhraseRepeated);
 }
