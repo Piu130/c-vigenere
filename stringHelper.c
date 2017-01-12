@@ -13,7 +13,7 @@ int endsWith(const char *str, const char *suffix) {
     return 0;
   size_t lenStr = strlen(str);
   size_t lenSuffix = strlen(suffix);
-  if (lenSuffix >  lenStr)
+  if (lenSuffix > lenStr)
     return 0;
   return strncmp(str + lenStr - lenSuffix, suffix, lenSuffix) == 0;
 }
