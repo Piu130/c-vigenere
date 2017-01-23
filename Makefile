@@ -5,10 +5,7 @@ EXEC=vigenere
 
 all: $(EXEC)
 
-stringHelper.o: stringHelper.c
-	$(CC) -c $< $(CFLAGS)
-
-fileHelper.o: fileHelper.c
+%.o: %.c
 	$(CC) -c $< $(CFLAGS)
 
 vigenere.o: vigenere.c stringHelper.h fileHelper.h
