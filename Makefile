@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-W -Wall -g
+CFLAGS=-W -Wall -g -O6
 LDFLAGS=
 EXEC=vigenere
 
