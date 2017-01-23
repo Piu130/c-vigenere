@@ -15,7 +15,9 @@
  */
 void askForPassPhrase(char *passPhrase) {
   printf("What is your pass phrase? (maxlen=%d)", MAX_PASS_LEN);
-  scanf("%" STR(MAX_PASS_LEN) "s", passPhrase);
+  if(scanf("%" STR(MAX_PASS_LEN) "s", passPhrase) == 0) {
+    error(1, 5, "Error reading pass phrase");
+  }
 }
 
 /**
